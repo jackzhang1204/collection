@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>sewiseJSONP</title>
+  <script type="text/javascript" src="jsonp.js"></script>
+</head>
+<body>
+	<input type="text" id="alertText" style="width: 600px; " />
+  <div>
+    <script>
+		//Vod/////////////
+    	//"http://192.168.1.24/service/playerapi/?do=getvideos&callback=callbackFun&programid=WDK4kyc3&m3u8=1&isAjax=1";
+		/*getJSONP.jsonp({
+			url:"http://192.168.1.201/service/playerapi/",
+			jsonp:"callback",
+			jsonpCallback:"callbackFun",
+			data:{
+					"do":"getvideos",
+					"programid":"BXAqjrTp",
+					"m3u8":1,
+					"isAjax":1
+				},
+			success:function(data){
+				document.getElementById("alertText").value = data.m3u8url;
+				//alert(data.m3u8url);
+				
+				console.log(data);
+			}
+		});*/
+		
+		
+		//Live/////////////
+    	//"http://192.168.1.219/service/playerapi/?do=getm3u8bypid&programid=mxia63ua";
+		/*getJSONP.getScript({
+			//url:"http://219.232.161.205/service/playerapi/",
+			url:"http://219.232.161.204/service/playerapi/",
+			data:{
+					"do":"getm3u8bypid",
+					//"programid":"bygv78vm"
+					"published": 1,
+					"programid":"vk5nx2cj"
+				},
+			success:function(data){
+				document.getElementById("alertText").value = this.m3u8Url;
+				console.log(this["m3u8Url"]);
+				console.log(this.programname);
+				
+
+			}
+		});*/
+		
+		//shift///////////////////////////////////////
+		//"http://192.168.1.219/service/playerapi/?do=getm3u8bypid&programid=mxia63ua";
+		getJSONP.getScript({
+			//url:"http://219.232.161.205/service/playerapi/",
+			url:"http://219.232.161.204/service/playerapi/",
+			data:{
+					"do":"epg",
+					"op":"getm3u8",
+					//"programid":"bygv78vm",
+					"programid":"vk5nx2cj",
+					"time":"20140623100324",
+					"playShift":"true"
+				},
+			success:function(){
+				//epgM3u8['sessionid'], epgM3u8['streamidNow'], epgM3u8['url']
+				var m3u8Url = epgM3u8.url;
+				document.getElementById("alertText").value = m3u8Url;
+				console.log(m3u8Url);
+
+			}
+		});
+
+
+		
+    </script>
+  </div>
+</body>
+</html>
