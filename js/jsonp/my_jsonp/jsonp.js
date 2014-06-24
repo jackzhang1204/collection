@@ -1,6 +1,6 @@
 (function(win){
 	var getJSONP = win.getJSONP = {
-			jsonp: function(obj){
+		jsonp: function(obj){
 			var url = obj["url"];
 			var jsonp = obj["jsonp"];
 			var jsonpCallback = obj["jsonpCallback"];
