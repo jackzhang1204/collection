@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script type="text/javascript">
+	(function(win) {
+		var player = win.player = function(container) {
+			if (player.api) {
+				return player.api.selectPlayer(container);
+			}
+		};
+		var api = player.api = function(container) {
+			var dom = document.getElementById(container);
+			this.setup = function(options) {
+				//console.log(this);
+				dom.style.width = options.width;
+				dom.style.height = options.height;
+				dom.style.backgroundColor = options.bgColor;
+				return this;
+			};
+			this.setWidth = function (width) {
+				dom.style.width = width;
+				return this;
+			}
+			this.setHeight = function (height) {
+				dom.style.height = height;
+				return this;
+			}
+			this.setColor = function (color) {
+				dom.style.backgroundColor = color;
+				return this;
+			}
+			return this;
+		};
+		api.selectPlayer = function(id) {
+			return new api(id);
+		}
+	})(window);
+	window.onload = function() {
+		player("box1").setup({width:"300px", height:"200px", bgColor:"#F00"});
+		player("box2").setup({width:"200px", height:"200px", bgColor:"#FF0"});
+		//player.setup({width:"300px", height:"200px", bgColor:"#F00"}});
+	}
+	function change(id, width, height, color) {
+		player(id).setWidth(width).setHeight(height).setColor(color);
+	}
+</script>
+</head>
+<body>
+<div>
+	<div id="box1" onclick="change('box1', '400px', '100px', '#F0F')"></div>
+	<div id="box2" onclick="change('box2', '100px', '300px', '#F00')"></div>
+<div>
+</body>
+</html>
